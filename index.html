@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manual y guía interactiva de workflows de desarrollo: metodología de los 10 bloques, Git Flow, Trunk-Based, GitHub Flow, GitLab Flow, Release Flow y Asistente Interactivo. HTML5 + CSS3 + JS Vanilla.">
+    <meta name="author" content="Codex">
+    <title>Manual y Guía de Workflows — HTML5</title>
+
+    <!-- Google Fonts: Inter (sans) + Fira Code (mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Enlace accesible para saltar al contenido -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <div class="app-container">
+        <!-- ============ HEADER STICKY ============ -->
+        <header class="top-header" role="banner">
+            <div class="header-left">
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="sidebar">
+                    <span class="toggle-bar"></span>
+                    <span class="toggle-bar"></span>
+                    <span class="toggle-bar"></span>
+                </button>
+                <div class="brand">
+                    <span class="brand-icon" aria-hidden="true">⚙️</span>
+                    <div class="brand-text">
+                        <span class="brand-title">Guía de Workflows</span>
+                        <span class="brand-subtitle">Manual interactivo HTML5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <nav class="breadcrumb" aria-label="Ruta de navegación">
+                    <span class="breadcrumb-item">Manual</span>
+                    <span class="breadcrumb-separator">›</span>
+                    <span class="breadcrumb-item" id="current-crumb">Introducción</span>
+                </nav>
+            </div>
+
+            <div class="header-right">
+                <div class="progress-container" title="Progreso de lectura">
+                    <div class="progress-bar" id="progress-bar" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <span class="progress-text" id="progress-text">0%</span>
+                </div>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema (claro/oscuro)">
+                    <span class="theme-icon" id="theme-icon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="sidebar" id="sidebar" role="navigation" aria-label="Navegación del manual">
+            <div class="sidebar-search">
+                <div class="search-wrapper">
+                    <span class="search-icon" aria-hidden="true">🔍</span>
+                    <input
+                        type="search"
+                        id="search-input"
+                        class="search-input"
+                        placeholder="Buscar secciones... (Ctrl+K)"
+                        aria-label="Buscar secciones del manual"
+                        autocomplete="off"
+                    >
+                </div>
+                <div class="search-results" id="search-results" role="listbox" aria-label="Resultados de búsqueda" hidden></div>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Índice de secciones">
+                <!-- Grupo: Fundamentos -->
+                <div class="nav-group">
+                    <span class="nav-group-title">Fundamentos</span>
+                    <ul class="nav-list">
+                        <li>
+                            <a href="#introduccion" class="nav-item" data-target="introduccion" role="option" aria-selected="true">
+                                <span class="nav-icon" aria-hidden="true">📖</span>
+                                <span class="nav-text">Introducción</span>
+                                <span class="nav-badge">1</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Grupo: Workflows -->
+                <div class="nav-group">
+                    <span class="nav-group-title">Workflows</span>
+                    <ul class="nav-list">
+                        <li>
+                            <a href="#git-flow" class="nav-item" data-target="git-flow" role="option" aria-selected="false">
+                                <span class="nav-icon" aria-hidden="true">🌿</span>
+                                <span class="nav-text">Git Flow</span>
+                                <span class="nav-badge">2</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#trunk-based" class="nav-item" data-target="trunk-based" role="option" aria-selected="false">
+                                <span class="nav-icon" aria-hidden="true">🪵</span>
+                                <span class="nav-text">Trunk-Based</span>
+                                <span class="nav-badge">3</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#github-flow" class="nav-item" data-target="github-flow" role="option" aria-selected="false">
+                                <span class="nav-icon" aria-hidden="true">🐙</span>
+                                <span class="nav-text">GitHub Flow</span>
+                                <span class="nav-badge">4</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#gitlab-flow" class="nav-item" data-target="gitlab-flow" role="option" aria-selected="false">
+                                <span class="nav-icon" aria-hidden="true">🦊</span>
+                                <span class="nav-text">GitLab Flow</span>
+                                <span class="nav-badge">5</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#release-flow" class="nav-item" data-target="release-flow" role="option" aria-selected="false">
+                                <span class="nav-icon" aria-hidden="true">🚀</span>
+                                <span class="nav-text">Release Flow</span>
+                                <span class="nav-badge">6</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Grupo: Recursos -->
+                <div class="nav-group">
+                    <span class="nav-group-title">Recursos</span>
+                    <ul class="nav-list">
+                        <li>
+                            <a href="#asistente" class="nav-item" data-target="asistente" role="option" aria-selected="false">
+                                <span class="nav-icon" aria-hidden="true">🧙</span>
+                                <span class="nav-text">Asistente de Selección</span>
+                                <span class="nav-badge">7</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p class="sidebar-footer-text">Hecho con HTML5 · CSS3 · JS Vanilla</p>
+            </div>
+        </aside>
+
+        <!-- Overlay móvil -->
+        <div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
+
+        <!-- ============ MAIN CONTENT ============ -->
+        <main class="main-content" id="main-content" role="main">
+            <div class="content-wrapper">
+
+                <!-- ====== SECCIÓN 1: INTRODUCCIÓN ====== -->
+                <section class="doc-section active" id="introduccion" aria-labelledby="introduccion-title">
+                    <div class="section-header">
+                        <span class="section-tag">Fundamentos</span>
+                        <h1 id="introduccion-title">Introducción a los Workflows</h1>
+                        <p class="section-lead">
+                            Un <strong>workflow</strong> es la secuencia ordenada de pasos que un equipo sigue para entregar valor de forma repetible. Esta guía documenta una <strong>metodología de 10 bloques canónicos</strong> aplicable a cualquier workflow de desarrollo de software.
+                        </p>
+                    </div>
+
+                    <div class="content-block">
+                        <h2>¿Qué encontrarás en esta guía?</h2>
+                        <p>
+                            Cada workflow documentado sigue la misma estructura, para que puedas compararlos en igualdad de condiciones y elegir el que mejor encaje con tu equipo, proyecto y contexto.
+                        </p>
+                    </div>
+
+                    <div class="content-block">
+                        <h2>Los 10 bloques canónicos</h2>
+                        <p>Esta es la plantilla metodológica que se aplica a cada workflow:</p>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <span class="card-number">1</span>
+                                <h3>Objetivo</h3>
+                                <p>Para qué existe el workflow y qué problema resuelve.</p>
+                            </div>
+                            <div class="card">
+                                <span class="card-number">2</span>
+                                <h3>Cuándo utilizarlo</h3>
+                                <p>Contextos y escenarios donde encaja, y donde no.</p>
+                            </div>
+                            <div class="card">
+                                <span class="card-number">3</span>
+                                <h3>Roles y responsabilidades</h3>
+                                <p>Quién hace qué en cada fase del workflow.</p>
+                            </div>
+                            <div class="card">
+                                <span class="card-number">4</span>
+                                <h3>Pasos detallados</h3>
+                                <p>La secuencia operativa paso a paso.</p>
+                            </div>
+                            <div class="card">
+                                <span class="card-number">5</span>
+                                <h3>Herramientas involucradas</h3>
+                                <p>Stack técnico y servicios que soportan el flujo.</p>
+                            </div>
+                            <div class="card">
+                                <span class="card-number">6</span>
+                                <h3>Plantillas / ejemplos</h3>
+                                <p>Recursos copiables para arrancar rápido.</p>
+                            </div>
+                            <div class="card">
+                                <span class="card-number">7</span>
+                                <h3>Puntos de control</h3>
+                                <p>Gates de calidad que frenan o permiten avanzar.</p>
+                            </div>
+                            <div class="card">
+                                <span class="card-number">8</span>
+                                <h3>Errores frecuentes</h3>
+                                <p>Trampas habituales y cómo evitarlas.</p>
+                            </div>
+                            <div class="card">
+                                <span class="card-number">9</span>
+                                <h3>Métricas de éxito</h3>
+                                <p>Cómo medir si el workflow funciona.</p>
+                            </div>
+                            <div class="card">
+                                <span class="card-number">10</span>
+                                <h3>Checklist final</h3>
+                                <p>Verificación interactiva antes de dar por listo el flujo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="callout callout-tip">
+                        <span class="callout-icon" aria-hidden="true">💡</span>
+                        <div class="callout-content">
+                            <strong>Tip:</strong> usa la barra de búsqueda del sidebar (o <kbd>Ctrl</kbd>+<kbd>K</kbd>) para saltar directamente entre workflows. Tu progreso de lectura se guarda automáticamente en el navegador.
+                        </div>
+                    </div>
+
+                    <div class="completion-box">
+                        <p>¿Has revisado esta sección?</p>
+                        <button class="btn btn-primary complete-btn" data-section="introduccion">Marcar como leída ✓</button>
+                    </div>
+                </section>
+
+                <!-- ====== SECCIÓN 2: GIT FLOW ====== -->
+                <section class="doc-section" id="git-flow" aria-labelledby="git-flow-title" hidden>
+                    <div class="section-header">
+                        <span class="section-tag">Workflow</span>
+                        <h1 id="git-flow-title">Git Flow</h1>
+                        <p class="section-lead">
+                            Flujo de ramas clásico de Vincent Driessen, ideal para productos con <strong>releases planificados</strong> y versionado semántico estricto.
+                        </p>
+                    </div>
+
+                    <!-- 1. Objetivo -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">1</span> Objetivo</h2>
+                        <p>
+                            Garantizar un historial de versiones predecible en proyectos con ciclos de release largos, separando claramente desarrollo, integración, releases y hotfixes.
+                        </p>
+                        <div class="callout callout-info">
+                            <span class="callout-icon" aria-hidden="true">ℹ️</span>
+                            <div class="callout-content">
+                                Git Flow resuelve la tensión entre "desarrollo continuo" y "releases estabilizadas" aislando cada preocupación en su propia rama.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Cuándo utilizarlo -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">2</span> Cuándo utilizarlo</h2>
+                        <div class="cards-grid cards-grid-2">
+                            <div class="card card-do">
+                                <h3>✅ Úsalo cuando</h3>
+                                <ul>
+                                    <li>Hay releases planificados (p. ej. móvil, desktop, SaaS on-prem).</li>
+                                    <li>Mantienes varias versiones en producción a la vez.</li>
+                                    <li>Necesitas hotfixes a una release sin tocar desarrollo.</li>
+                                </ul>
+                            </div>
+                            <div class="card card-dont">
+                                <h3>⛔ Evítalo cuando</h3>
+                                <ul>
+                                    <li>Haces despliegues continuos (CD con muchos deploys al día).</li>
+                                    <li>Equipo pequeño con flujos de feature simples.</li>
+                                    <li>Producto web SaaS sin versionado expuesto al usuario.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Roles y responsabilidades -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">3</span> Roles y responsabilidades</h2>
+                        <table class="roles-table">
+                            <thead>
+                                <tr>
+                                    <th>Rol</th>
+                                    <th>Responsabilidad en el workflow</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Maintainer del repositorio</td>
+                                    <td>Aprueba merges a <code>main</code> y <code>develop</code>, gestiona tags de release.</td>
+                                </tr>
+                                <tr>
+                                    <td>Release Manager</td>
+                                    <td>Abre la rama <code>release/*</code>, estabiliza, publica y mergea de vuelta.</td>
+                                </tr>
+                                <tr>
+                                    <td>Desarrollador/a</td>
+                                    <td>Crea <code>feature/*</code> desde <code>develop</code>, abre PR, resuelve feedback.</td>
+                                </tr>
+                                <tr>
+                                    <td>QA</td>
+                                    <td>Valida la rama <code>release/*</code> antes de subir a <code>main</code>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 4. Pasos detallados -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">4</span> Pasos detallados</h2>
+                        <ol class="steps-list">
+                            <li><code>develop</code> contiene el estado "siguiente release".</li>
+                            <li>Nueva feature: <code>git checkout -b feature/login develop</code>.</li>
+                            <li>Desarrollo + commits regulares; rebase ocasional sobre <code>develop</code>.</li>
+                            <li>Finaliza feature: PR a <code>develop</code> → merge <code>--no-ff</code>.</li>
+                            <li>Inicio de release: <code>git checkout -b release/1.4.0 develop</code>.</li>
+                            <li>Solo fixes de estabilización en <code>release/*</code>; bump de versión.</li>
+                            <li>Merge <code>release/*</code> a <code>main</code> (tag <code>v1.4.0</code>) <em>y</em> a <code>develop</code>.</li>
+                            <li>Hotfix: <code>git checkout -b hotfix/1.4.1 main</code>; merge a <code>main</code> (tag) y a <code>develop</code>.</li>
+                        </ol>
+                    </div>
+
+                    <!-- 5. Herramientas involucradas -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">5</span> Herramientas involucradas</h2>
+                        <div class="cards-grid">
+                            <div class="card"><h3>git-flow</h3><p>Extensión CLI que automatiza las ramas y tags.</p></div>
+                            <div class="card"><h3>GitHub / GitLab</h3><p>Plataforma de PRs y protection rules por rama.</p></div>
+                            <div class="card"><h3>SemVer</h3><p>Versionado semántico <code>MAJOR.MINOR.PATCH</code>.</p></div>
+                            <div class="card"><h3>CHANGELOG.md</h3><p>Registro humano de cambios por release.</p></div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Plantillas / ejemplos -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">6</span> Plantillas / ejemplos</h2>
+                        <p>Comando para inicializar el repositorio con la extensión <code>git-flow</code>:</p>
+                        <div class="code-wrapper">
+                            <div class="code-header">
+                                <span class="code-lang">bash</span>
+                                <button class="copy-btn" type="button" aria-label="Copiar código">Copiar</button>
+                            </div>
+                            <pre><code>git flow init -d
+git flow feature start login
+# ... desarrollo ...
+git flow feature finish login
+
+git flow release start 1.4.0
+# ... estabilización ...
+git flow release finish 1.4.0</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 7. Puntos de control -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">7</span> Puntos de control</h2>
+                        <ul class="checkpoints-list">
+                            <li><span class="checkpoint">Gate 1</span> PR de feature → CI verde + 1 revisor antes de merge a <code>develop</code>.</li>
+                            <li><span class="checkpoint">Gate 2</span> Rama <code>release/*</code> → QA sign-off antes de llegar a <code>main</code>.</li>
+                            <li><span class="checkpoint">Gate 3</span> Hotfix → regression tests + tag + backport a <code>develop</code> simultáneo.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 8. Errores frecuentes -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">8</span> Errores frecuentes</h2>
+                        <div class="callout callout-warning">
+                            <span class="callout-icon" aria-hidden="true">⚠️</span>
+                            <div class="callout-content">
+                                <ul>
+                                    <li><strong>Merge directo en <code>main</code></strong> sin pasar por <code>release/*</code>: rompe el aislamiento de estabilización.</li>
+                                    <li><strong>Olvidar el merge back</strong> de un hotfix a <code>develop</code>: el bug reaparece en la siguiente release.</li>
+                                    <li><strong>Features largas</strong> que viven semanas fuera de <code>develop</code>: conflictos masivos al integrar.</li>
+                                    <li><strong>No tagear releases</strong>: imposible reproducir una versión exacta.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Métricas de éxito -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">9</span> Métricas de éxito</h2>
+                        <div class="cards-grid cards-grid-3">
+                            <div class="card metric-card">
+                                <span class="metric-value">&lt; 24h</span>
+                                <span class="metric-label">Lead time hotfix</span>
+                            </div>
+                            <div class="card metric-card">
+                                <span class="metric-value">0</span>
+                                <span class="metric-label">Releases sin tag</span>
+                            </div>
+                            <div class="card metric-card">
+                                <span class="metric-value">≥ 1</span>
+                                <span class="metric-label">Revisor por PR</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Checklist final -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">10</span> Checklist final</h2>
+                        <p>Verifica antes de dar por implementado Git Flow en tu proyecto:</p>
+                        <ul class="checklist" id="checklist-git-flow">
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="git-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text"><code>main</code> y <code>develop</code> están protegidas</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="git-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">CI obligatorio en todas las ramas de feature/release</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="git-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Política de tageo SemVer documentada</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="git-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Equipo entrenado en el merge back de hotfixes</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="git-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">CHANGELOG actualizado en cada release</span></label></li>
+                        </ul>
+                    </div>
+
+                    <div class="completion-box">
+                        <p>¿Has revisado esta sección?</p>
+                        <button class="btn btn-primary complete-btn" data-section="git-flow">Marcar como leída ✓</button>
+                    </div>
+                </section>
+
+                <!-- ====== SECCIÓN 3: TRUNK-BASED ====== -->
+                <section class="doc-section" id="trunk-based" aria-labelledby="trunk-based-title" hidden>
+                    <div class="section-header">
+                        <span class="section-tag">Workflow</span>
+                        <h1 id="trunk-based-title">Trunk-Based Development</h1>
+                        <p class="section-lead">
+                            Todas las integraciones van a <code>main</code> (o <code>trunk</code>) de forma frecuente y corta. Es la base del <strong>Continuous Integration</strong> y del CD.
+                        </p>
+                    </div>
+
+                    <!-- 1. Objetivo -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">1</span> Objetivo</h2>
+                        <p>
+                            Minimizar el coste de integración manteniendo <code>main</code> siempre liberable. Las features se vuelven pequeñas, integradas y ocultadas por <em>feature flags</em> hasta estar listas.
+                        </p>
+                    </div>
+
+                    <!-- 2. Cuándo utilizarlo -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">2</span> Cuándo utilizarlo</h2>
+                        <div class="cards-grid cards-grid-2">
+                            <div class="card card-do">
+                                <h3>✅ Úsalo cuando</h3>
+                                <ul>
+                                    <li>Buscas CD con varios deploys al día.</li>
+                                    <li>Confías en feature flags para desacoplar deploy de release.</li>
+                                    <li>Tienes CI sólido y rápido (minutos).</li>
+                                </ul>
+                            </div>
+                            <div class="card card-dont">
+                                <h3>⛔ Evítalo cuando</h3>
+                                <ul>
+                                    <li>Releases congeladas y versionadas en paralelo.</li>
+                                    <li>Equipo sin disciplina de commits pequeños.</li>
+                                    <li>No hay CI/CD que valide cada push.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Roles y responsabilidades -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">3</span> Roles y responsabilidades</h2>
+                        <table class="roles-table">
+                            <thead>
+                                <tr><th>Rol</th><th>Responsabilidad</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Desarrollador/a</td><td>Branch corta (&lt; 24h), PR pequeño, integra a <code>main</code> a diario.</td></tr>
+                                <tr><td>Reviewer</td><td>Responde en &lt; 4h; bloquear main es un anti-patrón.</td></tr>
+                                <tr><td>Release Engineer</td><td>Mantiene pipeline CD y feature flag service.</td></tr>
+                                <tr><td>On-call</td><td>Recibe alertas de un deploy y puede revertir en minutos.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 4. Pasos detallados -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">4</span> Pasos detallados</h2>
+                        <ol class="steps-list">
+                            <li><code>git checkout -b feat/login main</code> (rama de vida corta).</li>
+                            <li>Desarrollo con commits pequeños protegidos por feature flag.</li>
+                            <li>Push al origen → CI automático.</li>
+                            <li>PR a <code>main</code> con checks verde; revisión rápida.</li>
+                            <li>Merge <code>--squash</code> o <code>--no-ff</code> según convención del repo.</li>
+                            <li><code>main</code> se deploya automáticamente (CD).</li>
+                            <li>Cuando la feature es estable, activa el flag por segmento y monitoriza.</li>
+                        </ol>
+                    </div>
+
+                    <!-- 5. Herramientas involucradas -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">5</span> Herramientas involucradas</h2>
+                        <div class="cards-grid">
+                            <div class="card"><h3>Feature Flags</h3><p>LaunchDarkly, Unleash, Flagsmith.</p></div>
+                            <div class="card"><h3>CI/CD</h3><p>GitHub Actions, GitLab CI, Jenkins.</p></div>
+                            <div class="card"><h3>Observabilidad</h3><p>Datadog, Grafana, Sentry.</p></div>
+                            <div class="card"><h3>Trunk</h3><p>Rama <code>main</code> única, siempre verde.</p></div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Plantillas / ejemplos -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">6</span> Plantillas / ejemplos</h2>
+                        <p>Ciclo típico de una feature corta:</p>
+                        <div class="code-wrapper">
+                            <div class="code-header">
+                                <span class="code-lang">bash</span>
+                                <button class="copy-btn" type="button" aria-label="Copiar código">Copiar</button>
+                            </div>
+                            <pre><code>git checkout main && git pull --rebase
+git checkout -b feat/login-button
+
+# ... realiza commits pequeños ...
+
+git push -u origin feat/login-button
+# Abre PR → revisión → CI verde → merge --squash a main
+
+# main se deploya solo; activa feature flag vía consola</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 7. Puntos de control -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">7</span> Puntos de control</h2>
+                        <ul class="checkpoints-list">
+                            <li><span class="checkpoint">Gate 1</span> PR pequeño (&lt; 400 LOC) + CI en &lt; 10 min.</li>
+                            <li><span class="checkpoint">Gate 2</span> Feature cubierta por tests; <code>main</code> siempre verde.</li>
+                            <li><span class="checkpoint">Gate 3</span> Rollback automático ante alertas post-deploy.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 8. Errores frecuentes -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">8</span> Errores frecuentes</h2>
+                        <div class="callout callout-warning">
+                            <span class="callout-icon" aria-hidden="true">⚠️</span>
+                            <div class="callout-content">
+                                <ul>
+                                    <li><strong>Ramas largas</strong> (&gt; 2 días) que rompen la premisa del trunk.</li>
+                                    <li><strong>Deploy = release</strong> sin feature flags: miedo a integrar incompleto.</li>
+                                    <li><strong>CI lento</strong> (&gt; 30 min): la gente deja de integrar a menudo.</li>
+                                    <li><strong>Revertir es difícil</strong>: se acumula deuda operativa.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Métricas de éxito -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">9</span> Métricas de éxito</h2>
+                        <div class="cards-grid cards-grid-3">
+                            <div class="card metric-card">
+                                <span class="metric-value">&gt; 1/día</span>
+                                <span class="metric-label">Integraciones por dev</span>
+                            </div>
+                            <div class="card metric-card">
+                                <span class="metric-value">&lt; 10 min</span>
+                                <span class="metric-label">Pipeline CI</span>
+                            </div>
+                            <div class="card metric-card">
+                                <span class="metric-value">&lt; 5 min</span>
+                                <span class="metric-label">MTTR deploy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Checklist final -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">10</span> Checklist final</h2>
+                        <p>Verifica antes de adoptar Trunk-Based:</p>
+                        <ul class="checklist" id="checklist-trunk-based">
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="trunk-based"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Feature flags disponibles y documentados</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="trunk-based"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Pipeline CI &lt; 10 min y siempre verde</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="trunk-based"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">CD automático desde <code>main</code> a staging/prod</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="trunk-based"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Estrategia de rollback en un clic</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="trunk-based"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">SLA de revisión de PR definido</span></label></li>
+                        </ul>
+                    </div>
+
+                    <div class="completion-box">
+                        <p>¿Has revisado esta sección?</p>
+                        <button class="btn btn-primary complete-btn" data-section="trunk-based">Marcar como leída ✓</button>
+                    </div>
+                </section>
+
+                <!-- ====== SECCIÓN 4: GITHUB FLOW ====== -->
+                <section class="doc-section" id="github-flow" aria-labelledby="github-flow-title" hidden>
+                    <div class="section-header">
+                        <span class="section-tag">Workflow</span>
+                        <h1 id="github-flow-title">GitHub Flow</h1>
+                        <p class="section-lead">
+                            Flujo liviano y flexible basado en **Pull Requests** hacia una única rama principal (<code>main</code>). Diseñado para despliegues continuos y comunicación fluida en equipo.
+                        </p>
+                    </div>
+
+                    <!-- 1. Objetivo -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">1</span> Objetivo</h2>
+                        <p>
+                            Eliminar la sobrecarga de gestión de múltiples ramas estables (como en Git Flow), permitiendo enviar cambios probados a producción de forma rápida y transparente.
+                        </p>
+                        <div class="callout callout-info">
+                            <span class="callout-icon" aria-hidden="true">ℹ️</span>
+                            <div class="callout-content">
+                                En GitHub Flow, todo lo que está en la rama <code>main</code> es desplegable a producción en cualquier momento.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Cuándo utilizarlo -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">2</span> Cuándo utilizarlo</h2>
+                        <div class="cards-grid cards-grid-2">
+                            <div class="card card-do">
+                                <h3>✅ Úsalo cuando</h3>
+                                <ul>
+                                    <li>Desarrollas aplicaciones web SaaS, APIs o microservicios.</li>
+                                    <li>Publicas cambios a producción de manera frecuente (diario o semanal).</li>
+                                    <li>Deseas discusiones abiertas y revisiones claras mediante Pull Requests.</li>
+                                </ul>
+                            </div>
+                            <div class="card card-dont">
+                                <h3>⛔ Evítalo cuando</h3>
+                                <ul>
+                                    <li>Necesitas soportar múltiples versiones antiguas en paralelo.</li>
+                                    <li>Hay ciclos de QA manual extensos (semanas) antes de desplegar.</li>
+                                    <li>Software empaquetado descargable con fechas fijas de versión.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Roles y responsabilidades -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">3</span> Roles y responsabilidades</h2>
+                        <table class="roles-table">
+                            <thead>
+                                <tr><th>Rol</th><th>Responsabilidad</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Desarrollador/a</td><td>Crea rama con nombre descriptivo, envía commits y abre PR temprano.</td></tr>
+                                <tr><td>Revisor / Peer</td><td>Revisa el código, prueba en preview environment y aprueba la PR.</td></tr>
+                                <tr><td>Automation / CI</td><td>Ejecuta linters, pruebas unitarias y construye previews en cada push.</td></tr>
+                                <tr><td>Release Manager</td><td>No existe como rol aislado; el equipo despliega al hacer merge.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 4. Pasos detallados -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">4</span> Pasos detallados</h2>
+                        <ol class="steps-list">
+                            <li>Crea una rama descriptiva desde <code>main</code> (ej. <code>feat/add-stripe-checkout</code>).</li>
+                            <li>Realiza commits frecuentes con mensajes claros y descriptivos.</li>
+                            <li>Abre un Pull Request tan pronto como quieras discusión o revisión.</li>
+                            <li>Discute el código, responde revisiones y pasa las verificaciones automatizadas (CI).</li>
+                            <li>Despliega el entorno de preview para pruebas en vivo antes del merge.</li>
+                            <li>Haz merge a <code>main</code> y despliega inmediatamente a producción.</li>
+                        </ol>
+                    </div>
+
+                    <!-- 5. Herramientas involucradas -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">5</span> Herramientas involucradas</h2>
+                        <div class="cards-grid">
+                            <div class="card"><h3>GitHub / PRs</h3><p>Plataforma para discusión, diffs y aprobaciones.</p></div>
+                            <div class="card"><h3>GitHub Actions</h3><p>CI/CD para pruebas unitarias y despliegue.</p></div>
+                            <div class="card"><h3>Preview Envs</h3><p>Vercel, Netlify o Kubernetes ephemerals.</p></div>
+                            <div class="card"><h3>Codeowners</h3><p>Asignación automática de revisores por ruta.</p></div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Plantillas / ejemplos -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">6</span> Plantillas / ejemplos</h2>
+                        <p>Comandos esenciales para el ciclo de GitHub Flow:</p>
+                        <div class="code-wrapper">
+                            <div class="code-header">
+                                <span class="code-lang">bash</span>
+                                <button class="copy-btn" type="button" aria-label="Copiar código">Copiar</button>
+                            </div>
+                            <pre><code># 1. Crear rama desde main
+git checkout main && git pull
+git checkout -b feat/user-notifications
+
+# 2. Guardar cambios y subir
+git commit -m "feat: agregar campana de notificaciones en navbar"
+git push -u origin feat/user-notifications
+
+# 3. Tras aprobar PR en GitHub, mergear y limpiar localmente
+git checkout main
+git pull
+git branch -d feat/user-notifications</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 7. Puntos de control -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">7</span> Puntos de control</h2>
+                        <ul class="checkpoints-list">
+                            <li><span class="checkpoint">Gate 1</span> Branch Protection en <code>main</code>: deshabilita pushes directos.</li>
+                            <li><span class="checkpoint">Gate 2</span> Al menos 1 aprobación explícita de un par en el Pull Request.</li>
+                            <li><span class="checkpoint">Gate 3</span> Pipeline de CI en verde (tests, linter, security audit).</li>
+                        </ul>
+                    </div>
+
+                    <!-- 8. Errores frecuentes -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">8</span> Errores frecuentes</h2>
+                        <div class="callout callout-warning">
+                            <span class="callout-icon" aria-hidden="true">⚠️</span>
+                            <div class="callout-content">
+                                <ul>
+                                    <li><strong>Abrir la PR al final del desarrollo</strong>: impide discusiones tempranas sobre arquitectura.</li>
+                                    <li><strong>Ramas que duran semanas sin sincronizar</strong>: generan conflictos masivos al mergear.</li>
+                                    <li><strong>Merge sin desplegar</strong>: acumular commits en <code>main</code> sin validar en producción.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Métricas de éxito -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">9</span> Métricas de éxito</h2>
+                        <div class="cards-grid cards-grid-3">
+                            <div class="card metric-card">
+                                <span class="metric-value">&lt; 24h</span>
+                                <span class="metric-label">Tiempo de vida de la PR</span>
+                            </div>
+                            <div class="card metric-card">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">PRs con CI en verde</span>
+                            </div>
+                            <div class="card metric-card">
+                                <span class="metric-value">&lt; 300</span>
+                                <span class="metric-label">Líneas por Pull Request</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Checklist final -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">10</span> Checklist final</h2>
+                        <p>Verifica antes de adoptar GitHub Flow:</p>
+                        <ul class="checklist" id="checklist-github-flow">
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="github-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Rama <code>main</code> protegida con reglas de aprobación</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="github-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">CI configurado para ejecutar tests en cada PR</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="github-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Plantilla de Pull Request configurada en el repositorio</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="github-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Estrategia de eliminación automática de ramas fusionadas activa</span></label></li>
+                        </ul>
+                    </div>
+
+                    <div class="completion-box">
+                        <p>¿Has revisado esta sección?</p>
+                        <button class="btn btn-primary complete-btn" data-section="github-flow">Marcar como leída ✓</button>
+                    </div>
+                </section>
+
+                <!-- ====== SECCIÓN 5: GITLAB FLOW ====== -->
+                <section class="doc-section" id="gitlab-flow" aria-labelledby="gitlab-flow-title" hidden>
+                    <div class="section-header">
+                        <span class="section-tag">Workflow</span>
+                        <h1 id="gitlab-flow-title">GitLab Flow</h1>
+                        <p class="section-lead">
+                            Conecta el flujo sencillo de ramas de GitHub Flow con la gestión explícita de <strong>entornos (staging/production)</strong> o <strong>versiones de release</strong>.
+                        </p>
+                    </div>
+
+                    <!-- 1. Objetivo -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">1</span> Objetivo</h2>
+                        <p>
+                            Ofrecer una alternativa estructurada a Git Flow que no sacrifique la simplicidad, garantizando que cada código probado pase ordenadamente por entornos de validación antes de producción.
+                        </p>
+                    </div>
+
+                    <!-- 2. Cuándo utilizarlo -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">2</span> Cuándo utilizarlo</h2>
+                        <div class="cards-grid cards-grid-2">
+                            <div class="card card-do">
+                                <h3>✅ Úsalo cuando</h3>
+                                <ul>
+                                    <li>Cuentas con entornos físicos o virtuales estrictos (Staging, Pre-prod, Prod).</li>
+                                    <li>Necesitas desplegar versiones específicas a clientes seleccionados.</li>
+                                    <li>Deseas evitar la complejidad de la rama <code>develop</code> de Git Flow.</li>
+                                </ul>
+                            </div>
+                            <div class="card card-dont">
+                                <h3>⛔ Evítalo cuando</h3>
+                                <ul>
+                                    <li>Tu arquitectura permite despliegue continuo directo desde <code>main</code> a prod.</li>
+                                    <li>No tienes staging ni infraestructura para pruebas previas.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Roles y responsabilidades -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">3</span> Roles y responsabilidades</h2>
+                        <table class="roles-table">
+                            <thead>
+                                <tr><th>Rol</th><th>Responsabilidad</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Desarrollador/a</td><td>Crea feature branch y hace Merge Request (MR) hacia <code>main</code>.</td></tr>
+                                <tr><td>QA / Staging Lead</td><td>Valida cambios integrados en <code>main</code> (entorno de Staging).</td></tr>
+                                <tr><td>Operations / Release Manager</td><td>Promueve de <code>main</code> a la rama <code>production</code> cuando se aprueba.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 4. Pasos detallados -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">4</span> Pasos detallados</h2>
+                        <ol class="steps-list">
+                            <li>Desarrolla la funcionalidad en una rama corta desde <code>main</code>.</li>
+                            <li>Abre un Merge Request (MR) apuntando hacia <code>main</code>.</li>
+                            <li>Tras revisión y CI, haz merge a <code>main</code> (esto despliega automáticamente a Staging).</li>
+                            <li>Valida la integración en el entorno de Staging.</li>
+                            <li>Para llevar a Producción, abre un MR o promueve el commit desde <code>main</code> hacia la rama <code>production</code>.</li>
+                        </ol>
+                    </div>
+
+                    <!-- 5. Herramientas involucradas -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">5</span> Herramientas involucradas</h2>
+                        <div class="cards-grid">
+                            <div class="card"><h3>GitLab CI/CD</h3><p>Pipelines avanzados con entornos y variables.</p></div>
+                            <div class="card"><h3>Merge Requests</h3><p>Herramienta de revisión de código de GitLab.</p></div>
+                            <div class="card"><h3>Environments</h3><p>Seguimiento de despliegues por rama en GitLab UI.</p></div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Plantillas / ejemplos -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">6</span> Plantillas / ejemplos</h2>
+                        <p>Flujo de promoción entre ramas de entorno:</p>
+                        <div class="code-wrapper">
+                            <div class="code-header">
+                                <span class="code-lang">bash</span>
+                                <button class="copy-btn" type="button" aria-label="Copiar código">Copiar</button>
+                            </div>
+                            <pre><code># 1. Desarrollo e integración en main (Staging)
+git checkout main
+git merge --no-ff feature/checkout-v2
+
+# 2. Promoción a producción tras validación en Staging
+git checkout production
+git merge main
+git push origin production</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 7. Puntos de control -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">7</span> Puntos de control</h2>
+                        <ul class="checkpoints-list">
+                            <li><span class="checkpoint">Gate 1</span> MR a <code>main</code> requiere aprobación de peer y CI limpio.</li>
+                            <li><span class="checkpoint">Gate 2</span> Testeo e integración exitosa en el entorno Staging.</li>
+                            <li><span class="checkpoint">Gate 3</span> Merge a <code>production</code> restringido a roles de Maintainer.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 8. Errores frecuentes -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">8</span> Errores frecuentes</h2>
+                        <div class="callout callout-warning">
+                            <span class="callout-icon" aria-hidden="true">⚠️</span>
+                            <div class="callout-content">
+                                <ul>
+                                    <li><strong>Aplicar hotfixes en <code>production</code></strong> sin pasar por <code>main</code> (causa regresiones).</li>
+                                    <li><strong>Saltarse el entorno de Staging</strong> introduciendo cambios no testeados.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Métricas de éxito -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">9</span> Métricas de éxito</h2>
+                        <div class="cards-grid cards-grid-3">
+                            <div class="card metric-card">
+                                <span class="metric-value">0</span>
+                                <span class="metric-label">Commits directos en production</span>
+                            </div>
+                            <div class="card metric-card">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">Despliegues rastreables por MR</span>
+                            </div>
+                            <div class="card metric-card">
+                                <span class="metric-value">&lt; 1h</span>
+                                <span class="metric-label">Tiempo de promoción staging → prod</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Checklist final -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">10</span> Checklist final</h2>
+                        <p>Verifica antes de adoptar GitLab Flow:</p>
+                        <ul class="checklist" id="checklist-gitlab-flow">
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="gitlab-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Ramas de entorno (<code>main</code>, <code>production</code>) configuradas</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="gitlab-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Pipelines CI/CD vinculados a cada entorno</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="gitlab-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Regla "upstream first" comunicada al equipo</span></label></li>
+                        </ul>
+                    </div>
+
+                    <div class="completion-box">
+                        <p>¿Has revisado esta sección?</p>
+                        <button class="btn btn-primary complete-btn" data-section="gitlab-flow">Marcar como leída ✓</button>
+                    </div>
+                </section>
+
+                <!-- ====== SECCIÓN 6: RELEASE FLOW ====== -->
+                <section class="doc-section" id="release-flow" aria-labelledby="release-flow-title" hidden>
+                    <div class="section-header">
+                        <span class="section-tag">Workflow</span>
+                        <h1 id="release-flow-title">Release Flow</h1>
+                        <p class="section-lead">
+                            Metodología empleada a gran escala (estilo Microsoft Azure DevOps). Mantiene un <code>main</code> siempre activo y genera <strong>ramas de release por sprint</strong> para estabilización y despliegue.
+                        </p>
+                    </div>
+
+                    <!-- 1. Objetivo -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">1</span> Objetivo</h2>
+                        <p>
+                            Soportar entregas periódicas (semanales o por Sprint) en equipos con decenas de desarrolladores, garantizando que el desarrollo en <code>main</code> nunca se detenga mientras se prepara un release.
+                        </p>
+                    </div>
+
+                    <!-- 2. Cuándo utilizarlo -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">2</span> Cuándo utilizarlo</h2>
+                        <div class="cards-grid cards-grid-2">
+                            <div class="card card-do">
+                                <h3>✅ Úsalo cuando</h3>
+                                <ul>
+                                    <li>Equipos grandes integrando código continuamente en <code>main</code>.</li>
+                                    <li>Cadencia de despliegue fija (ej. cada jueves o al final de cada Sprint).</li>
+                                    <li>Filosofía de solucionar bugs primero en <code>main</code> y luego portar al release.</li>
+                                </ul>
+                            </div>
+                            <div class="card card-dont">
+                                <h3>⛔ Evítalo cuando</h3>
+                                <ul>
+                                    <li>Proyectos pequeños con pocos cambios semanales.</li>
+                                    <li>Despliegue continuo inmediato sin ciclos de Sprint.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Roles y responsabilidades -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">3</span> Roles y responsabilidades</h2>
+                        <table class="roles-table">
+                            <thead>
+                                <tr><th>Rol</th><th>Responsabilidad</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Desarrollador/a</td><td>Crea topic branches desde <code>main</code> y resuelve bugs siempre primero en <code>main</code>.</td></tr>
+                                <tr><td>Release Commander</td><td>Crea la rama <code>release/YYMM</code> al final del Sprint y gestiona cherry-picks.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 4. Pasos detallados -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">4</span> Pasos detallados</h2>
+                        <ol class="steps-list">
+                            <li>Desarrolla en topic branch desde <code>main</code> e integra mediante Pull Request.</li>
+                            <li>Al final del Sprint, se crea la rama de release (ej. <code>release/2026.07</code>) desde <code>main</code>.</li>
+                            <li>Se despliega la rama de release a producción.</li>
+                            <li>Si surge un bug en producción, <strong>se soluciona primero en <code>main</code></strong> y luego se hace <code>cherry-pick</code> a la rama de release.</li>
+                        </ol>
+                    </div>
+
+                    <!-- 5. Herramientas involucradas -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">5</span> Herramientas involucradas</h2>
+                        <div class="cards-grid">
+                            <div class="card"><h3>Azure Pipelines / Actions</h3><p>Automatización de despliegues y cherry-picks.</p></div>
+                            <div class="card"><h3>Git Cherry-Pick</h3><p>Mecanismo para aplicar parches específicos a releases.</p></div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Plantillas / ejemplos -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">6</span> Plantillas / ejemplos</h2>
+                        <p>Flujo de Hotfix en Release Flow (Fix First in Main):</p>
+                        <div class="code-wrapper">
+                            <div class="code-header">
+                                <span class="code-lang">bash</span>
+                                <button class="copy-btn" type="button" aria-label="Copiar código">Copiar</button>
+                            </div>
+                            <pre><code># 1. Corregir en main
+git checkout main
+git commit -m "fix: solucionar fuga de memoria en autenticación"
+# Obtener el hash del commit (ej: a1b2c3d)
+
+# 2. Portar el fix a la rama de release activa
+git checkout release/2026.07
+git cherry-pick a1b2c3d
+git push origin release/2026.07</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 7. Puntos de control -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">7</span> Puntos de control</h2>
+                        <ul class="checkpoints-list">
+                            <li><span class="checkpoint">Gate 1</span> Regla estricta: ningún commit ingresa a la rama de release sin existir previamente en <code>main</code>.</li>
+                            <li><span class="checkpoint">Gate 2</span> Verificación de cherry-pick automático vía bot de CI.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 8. Errores frecuentes -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">8</span> Errores frecuentes</h2>
+                        <div class="callout callout-warning">
+                            <span class="callout-icon" aria-hidden="true">⚠️</span>
+                            <div class="callout-content">
+                                <ul>
+                                    <li><strong>Corregir directo en la rama de release</strong> y olvidar el commit en <code>main</code> (causa reaparición del bug en la siguiente entrega).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Métricas de éxito -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">9</span> Métricas de éxito</h2>
+                        <div class="cards-grid cards-grid-3">
+                            <div class="card metric-card">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">Bugfixes en main primero</span>
+                            </div>
+                            <div class="card metric-card">
+                                <span class="metric-value">0</span>
+                                <span class="metric-label">Bugs reaparecidos en versión posterior</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Checklist final -->
+                    <div class="content-block">
+                        <h2><span class="block-tag">10</span> Checklist final</h2>
+                        <ul class="checklist" id="checklist-release-flow">
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="release-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Cadencia de creación de ramas de release establecida</span></label></li>
+                            <li><label class="checklist-item"><input type="checkbox" data-checklist="release-flow"><span class="checkmark" aria-hidden="true"></span><span class="checklist-text">Política "Fix in main first" aceptada por el equipo</span></label></li>
+                        </ul>
+                    </div>
+
+                    <div class="completion-box">
+                        <p>¿Has revisado esta sección?</p>
+                        <button class="btn btn-primary complete-btn" data-section="release-flow">Marcar como leída ✓</button>
+                    </div>
+                </section>
+
+                <!-- ====== SECCIÓN 7: ASISTENTE INTERACTIVO (WIZARD) ====== -->
+                <section class="doc-section" id="asistente" aria-labelledby="asistente-title" hidden>
+                    <div class="section-header">
+                        <span class="section-tag">Recursos</span>
+                        <h1 id="asistente-title">Asistente de Selección de Workflow</h1>
+                        <p class="section-lead">
+                            Responde a 4 preguntas clave sobre tu producto, equipo y cadencia de despliegue para obtener una recomendación personalizada del workflow ideal.
+                        </p>
+                    </div>
+
+                    <div class="wizard-container" id="wizard-container">
+                        <!-- Progress bar del wizard -->
+                        <div class="wizard-steps-header">
+                            <div class="wizard-step-info">
+                                <span id="wizard-step-label">Paso 1 de 4</span>
+                                <span id="wizard-step-title">Tipo de Producto</span>
+                            </div>
+                            <div class="wizard-progress-bar">
+                                <div class="wizard-progress-fill" id="wizard-progress-fill" style="width: 25%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Formulario de preguntas -->
+                        <div class="wizard-card" id="wizard-card">
+                            <!-- Q1 -->
+                            <div class="wizard-question-group active" data-step="1">
+                                <h2>1. ¿Qué tipo de producto desarrollas principalmente?</h2>
+                                <p class="question-subtitle">Selecciona el formato de entrega de tu aplicación.</p>
+                                <div class="wizard-options">
+                                    <label class="wizard-option">
+                                        <input type="radio" name="q1_product" value="saas" checked>
+                                        <div class="option-content">
+                                            <span class="option-icon">🌐</span>
+                                            <div class="option-text">
+                                                <strong>SaaS / App Web en la nube</strong>
+                                                <span>Despliegue continuo en servidores web, APIs o microservicios.</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="wizard-option">
+                                        <input type="radio" name="q1_product" value="mobile">
+                                        <div class="option-content">
+                                            <span class="option-icon">📱</span>
+                                            <div class="option-text">
+                                                <strong>App Móvil / Desktop</strong>
+                                                <span>Aplicaciones distribuidas vía App Stores o ejecutable descargable.</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="wizard-option">
+                                        <input type="radio" name="q1_product" value="onpremise">
+                                        <div class="option-content">
+                                            <span class="option-icon">🏢</span>
+                                            <div class="option-text">
+                                                <strong>Software On-Premise / Licenciado</strong>
+                                                <span>Entregas empaquetadas instaladas en la infraestructura del cliente.</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Q2 -->
+                            <div class="wizard-question-group" data-step="2" hidden>
+                                <h2>2. ¿Con qué frecuencia despliegan o publican cambios?</h2>
+                                <p class="question-subtitle">Indica el ritmo habitual de entrega de valor.</p>
+                                <div class="wizard-options">
+                                    <label class="wizard-option">
+                                        <input type="radio" name="q2_freq" value="continuous" checked>
+                                        <div class="option-content">
+                                            <span class="option-icon">⚡</span>
+                                            <div class="option-text">
+                                                <strong>Varias veces al día (CD)</strong>
+                                                <span>Despliegues automáticos frecuentes a medida que se aprueban cambios.</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="wizard-option">
+                                        <input type="radio" name="q2_freq" value="sprint">
+                                        <div class="option-content">
+                                            <span class="option-icon">📅</span>
+                                            <div class="option-text">
+                                                <strong>Semanal o por Sprints (1-2 semanas)</strong>
+                                                <span>Apertura y cierre de ciclo planificado regularmente.</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="wizard-option">
+                                        <input type="radio" name="q2_freq" value="scheduled">
+                                        <div class="option-content">
+                                            <span class="option-icon">📦</span>
+                                            <div class="option-text">
+                                                <strong>Mensual o trimestral (Releases congelados)</strong>
+                                                <span>Largas etapas de prueba y homologación formal.</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Q3 -->
+                            <div class="wizard-question-group" data-step="3" hidden>
+                                <h2>3. ¿Cuántos desarrolladores trabajan en el código?</h2>
+                                <p class="question-subtitle">El tamaño del equipo condiciona el volumen de conflictos de integración.</p>
+                                <div class="wizard-options">
+                                    <label class="wizard-option">
+                                        <input type="radio" name="q3_team" value="small" checked>
+                                        <div class="option-content">
+                                            <span class="option-icon">👤</span>
+                                            <div class="option-text">
+                                                <strong>Equipo pequeño (1 a 4 devs)</strong>
+                                                <span>Comunicación directa y rápida alineación.</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="wizard-option">
+                                        <input type="radio" name="q3_team" value="medium">
+                                        <div class="option-content">
+                                            <span class="option-icon">👥</span>
+                                            <div class="option-text">
+                                                <strong>Equipo mediano (5 a 15 devs)</strong>
+                                                <span>Requiere revisiones de código (PRs) bien estructuradas.</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="wizard-option">
+                                        <input type="radio" name="q3_team" value="enterprise">
+                                        <div class="option-content">
+                                            <span class="option-icon">🏛️</span>
+                                            <div class="option-text">
+                                                <strong>Múltiples equipos (+15 devs)</strong>
+                                                <span>Se requiere estricta automatización y aislamiento de versiones.</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Q4 -->
+                            <div class="wizard-question-group" data-step="4" hidden>
+                                <h2>4. ¿Necesitan mantener múltiples versiones antiguas en paralelo?</h2>
+                                <p class="question-subtitle">Por ejemplo: parches de seguridad para v1.2 mientras desarrollan v2.0.</p>
+                                <div class="wizard-options">
+                                    <label class="wizard-option">
+                                        <input type="radio" name="q4_versions" value="no" checked>
+                                        <div class="option-content">
+                                            <span class="option-icon">➡️</span>
+                                            <div class="option-text">
+                                                <strong>No, solo mantenemos la última versión activa</strong>
+                                                <span>Todos los usuarios consumen siempre la versión más reciente.</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="wizard-option">
+                                        <input type="radio" name="q4_versions" value="yes">
+                                        <div class="option-content">
+                                            <span class="option-icon">🔀</span>
+                                            <div class="option-text">
+                                                <strong>Sí, debemos dar soporte a varios releases o entornos</strong>
+                                                <span>Soportamos versiones LTS o entornos diferenciados (Staging / Prod).</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Controls -->
+                            <div class="wizard-actions">
+                                <button type="button" class="btn btn-secondary" id="wizard-prev-btn" disabled>Anterior</button>
+                                <button type="button" class="btn btn-primary" id="wizard-next-btn">Siguiente</button>
+                            </div>
+                        </div>
+
+                        <!-- RESULT CARD (oculto por defecto) -->
+                        <div class="wizard-result-card" id="wizard-result-card" hidden>
+                            <div class="result-header">
+                                <span class="result-badge">Recomendación Oficial</span>
+                                <span class="result-icon" id="result-icon">🌿</span>
+                                <h2 class="result-title" id="result-title">Git Flow</h2>
+                            </div>
+                            <p class="result-description" id="result-description">
+                                Tu proyecto requiere un control riguroso de versiones y estabilización de entregas.
+                            </p>
+                            <div class="result-benefits">
+                                <h3>¿Por qué encaja con tu equipo?</h3>
+                                <ul id="result-reasons-list">
+                                    <!-- Dinámico -->
+                                </ul>
+                            </div>
+                            <div class="result-actions">
+                                <button type="button" class="btn btn-primary" id="go-to-workflow-btn">Ver guía completa de este workflow →</button>
+                                <button type="button" class="btn btn-secondary" id="reset-wizard-btn">Volver a calcular</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="completion-box">
+                        <p>¿Has revisado esta sección?</p>
+                        <button class="btn btn-primary complete-btn" data-section="asistente">Marcar como leída ✓</button>
+                    </div>
+                </section>
+
+            </div>
+
+            <footer class="content-footer">
+                <p>Manual y Guía de Workflows · HTML5 + CSS3 + JavaScript Vanilla · <a href="#introduccion">Volver al inicio</a></p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="js/app.js" defer></script>
+</body>
+</html>
